@@ -11,9 +11,10 @@ public class HadesIronSword extends ItemSword
 		super(par1, par2EnumToolMaterial);
 	}
 	
-	public void func_94581_a(IconRegister iconReg)
-	{
-	         iconIndex = iconReg.func_94245_a("greek_or_roman:HadesIronSword");
-	}
+    @Override
+    public void updateIcons(IconRegister iconRegister)
+    {
+             iconIndex = iconRegister.registerIcon("Greek_or_Roman:HadesIronSword");
+    }
 	
 }

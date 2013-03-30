@@ -18,11 +18,11 @@ public class WorldGenerator_Greek_or_Roman implements IWorldGenerator
 	{
 		switch(world.provider.dimensionId)
 		{
-		case 1:
+		case -1:
 			generateNether(world, random, chunkX * 16, chunkZ * 16);
 		case 0:
 			generateSurface(world, random, chunkX * 16, chunkZ * 16);
-		case -1:
+		case 1:
 			generateEnd(world, random, chunkX * 16, chunkZ * 16);
 		}
 	}
@@ -40,7 +40,25 @@ public class WorldGenerator_Greek_or_Roman implements IWorldGenerator
 			int yCoord = random.nextInt(12);
 			int zCoord = chunkZ + random.nextInt(16);
 			
-			(new WorldGenMinable(Greek_or_Roman.Jupiterium.blockID, 3)).generate(world, random, xCoord, yCoord, zCoord);
+			(new WorldGenMinable(Greek_or_Roman.Jupiterium.blockID, 4)).generate(world, random, xCoord, yCoord, zCoord);
+		}
+		
+		for(int i = 0; i < 12; i++)
+		{
+			int xCoord = chunkX + random.nextInt(16);
+			int yCoord = random.nextInt(40);
+			int zCoord = chunkZ + random.nextInt(16);
+			
+			(new WorldGenMinable(Greek_or_Roman.Celestial_Bronze.blockID, 8)).generate(world, random, xCoord, yCoord, zCoord);
+		}
+		
+		for(int i = 0; i < 9; i++)
+		{
+			int xCoord = chunkX + random.nextInt(16);
+			int yCoord = random.nextInt(20);
+			int zCoord = chunkZ + random.nextInt(16);
+			
+			(new WorldGenMinable(Greek_or_Roman.Imperial_Gold.blockID, 8)).generate(world, random, xCoord, yCoord, zCoord);
 		}
 	}
 

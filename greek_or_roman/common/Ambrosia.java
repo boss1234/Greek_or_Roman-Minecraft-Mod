@@ -11,9 +11,9 @@ public class Ambrosia extends ItemFood
 		super(par1, par2, par3, par4);
 	}
 	
-	public void func_94581_a(IconRegister iconReg)
-	{
-	         iconIndex = iconReg.func_94245_a("greek_or_roman:BadAmbrosia");
-	
-	}
+    @Override
+    public void updateIcons(IconRegister iconRegister)
+    {
+             iconIndex = iconRegister.registerIcon("Greek_or_Roman:BadAmbrosia");
+    }
 }

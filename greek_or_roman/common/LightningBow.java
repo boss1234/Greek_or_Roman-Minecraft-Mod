@@ -143,10 +143,11 @@ public class LightningBow extends Item
     }
 
     @SideOnly(Side.CLIENT)
-    public void func_94581_a(IconRegister iconReg)
-	{
-	         iconIndex = iconReg.func_94245_a("greek_or_roman:LightningBow");
-	}
+    @Override
+    public void updateIcons(IconRegister iconRegister)
+    {
+             iconIndex = iconRegister.registerIcon("Greek_or_Roman:LightningBow");
+    }
 
     @SideOnly(Side.CLIENT)
     public Icon func_94599_c(int par1)
