@@ -1,20 +1,12 @@
 package greek_or_roman;
 
-import greek_or_roman.common.ZeusBoltEntity;
-import greek_or_roman.common.ZeusBoltRender;
-import greek_or_roman.common.ZeusIronSword;
-import greek_or_roman.common.LightningBow;
-import greek_or_roman.common.ZeusIronPickaxe;
-import greek_or_roman.common.HadesIronPickaxe;
-import greek_or_roman.common.HadesIronSword;
-import greek_or_roman.common.Ambrosia;
-import greek_or_roman.common.PerfectAmbrosia;
-import greek_or_roman.common.WorldGenerator_Greek_or_Roman;
+import greek_or_roman.common.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -36,13 +28,16 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class Greek_or_Roman 
 	{
-	@SidedProxy(clientSide = "Greek_or_Roman.client.ClientProxyGreek_or_Roman",
+	@SidedProxy(clientSide = "Greek_or_Roman.ClientProxyGreek_or_Roman",
 				serverSide = "Greek_or_Roman.common.commonProxyGreek_or_Roman")
 	public static ClientProxy_Greek_or_Roman proxy = new ClientProxy_Greek_or_Roman();
 	
 	
 	public static EnumToolMaterial ZI = EnumHelper.addToolMaterial("ZI", 3, 20000, 12.0F, 10, 10);
 	public static EnumToolMaterial HI = EnumHelper.addToolMaterial("HI", 3, 25000, 9.0F, 9, 10);
+	public static EnumToolMaterial CB = EnumHelper.addToolMaterial("CB", 3, 17500, 8.5F, 7, 10);
+	public static EnumToolMaterial IG = EnumHelper.addToolMaterial("IG", 3, 17000, 10.5F, 9, 10);
+
 	
 	public static Block Celestial_Bronze;
 	public static Block Imperial_Gold;
@@ -64,6 +59,7 @@ public class Greek_or_Roman
         return (new EntityDamageSourceIndirect("ZeusBolt", entityArrow, par1Entity)).setProjectile();
     }
 	
+    
 	int JupiteriumID = 1000;
 	int ZeusIronID = 1001;
 	int PlutoniumID = 1002;
@@ -93,8 +89,8 @@ public class Greek_or_Roman
 		ZeusIronPickaxe = new ZeusIronPickaxe(ZeusIronPickaxeID, ZI).setUnlocalizedName("ZeusIronPickaxe").setCreativeTab(CreativeTabs.tabTools);
 		ZeusBolt = new Item(ZeusBoltID).setUnlocalizedName("ZeusBolt").setCreativeTab(CreativeTabs.tabCombat);
 		LightningBow = new LightningBow(LightningBowID).setUnlocalizedName("LightningBow").setCreativeTab(CreativeTabs.tabCombat);
-		
-		
+		Celestial_Bronze = new Celestial_Bronze(Celestial_BronzeID, Material.iron).setUnlocalizedName("C_Bronze");
+		Imperial_Gold = new Imperial_Gold(Imperial_GoldID, Material.iron).setUnlocalizedName("I_Gold");
 
 		gameRegisters();
 		languageRegisters();
@@ -176,11 +172,15 @@ public class Greek_or_Roman
 		
 	private static void gameRegisters()
 	{
+		GameRegistry.registerBlock(Imperial_Gold, "Imperial Gold");
+		
+		GameRegistry.registerBlock(Celestial_Bronze, "Celestial Bronze");
+		
 		GameRegistry.registerBlock(Jupiterium, "Jupiterium Ore");
 		
-		GameRegistry.registerItem(ZeusIron, "Zeus Iron");
-		
 		GameRegistry.registerBlock(Plutonium, "Plutonium Ore");
+		
+		GameRegistry.registerItem(ZeusIron, "Zeus Iron");
 		
 		GameRegistry.registerItem(Ambrosia, "Bad Ambrosia");
 		
@@ -199,6 +199,10 @@ public class Greek_or_Roman
 	
 	private static void languageRegisters()
 	{
+		LanguageRegistry.addName(Imperial_Gold, "Imperial Gold");
+		
+		LanguageRegistry.addName(Celestial_Bronze, "Celestial Bronze");
+		
 		LanguageRegistry.addName(Jupiterium, "Jupiterium Ore");
 		
 		LanguageRegistry.addName(Plutonium, "Plutonium Ore");
